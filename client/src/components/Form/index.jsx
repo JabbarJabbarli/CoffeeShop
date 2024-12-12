@@ -3,7 +3,7 @@ import formImage from "../../assets/formImage/formImage.jpg";
 
 const Form = () => {
   return (
-    <div className="p-32 flex justify-between">
+    <div className="px-32 py-16 flex justify-between">
       <div>
         <div className="w-[760px]  flex flex-col gap-7">
           <h1 className="font-festivo text-white text-8xl">CONTACT US</h1>
