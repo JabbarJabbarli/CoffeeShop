@@ -1,7 +1,19 @@
 import React from "react";
 import formImage from "../../assets/formImage/formImage.jpg";
+import { useForm } from "react-hook-form";
 
 const Form = () => {
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="px-32 py-16 flex justify-between">
       <div>
@@ -16,18 +28,22 @@ const Form = () => {
             page.
           </p>
         </div>
-        <form className="pt-10 w-[760px] ">
+        <form onSubmit={handleSubmit(onSubmit)} className="pt-10 w-[760px] ">
           <div className="flex gap-10 flex-wrap">
             <div className="flex flex-col gap-5">
               <label className=" pl-5 text-white">First Name</label>
               <input
                 placeholder="Max "
+                name="userName"
+                {...register("userName", { required: true })}
                 className="w-[340px] bg-black px-10 py-5 border text-white border-gray-400 rounded-full"
               />
             </div>
             <div className="flex  flex-col gap-5">
               <label className="pl-5 text-white">Last Name</label>
               <input
+                name="lastName"
+                {...register("lastName", { required: true })}
                 placeholder="Mustermann "
                 className="w-[340px] bg-black border text-white border-gray-400 px-10 py-5 rounded-full"
               />
@@ -35,6 +51,8 @@ const Form = () => {
             <div className="flex  flex-col gap-5">
               <label className="pl-5 text-white">Email</label>
               <input
+                name="email"
+                {...register("email", { required: true })}
                 className="w-[718px] px-10 py-5 bg-black border text-white border-gray-400  rounded-full"
                 placeholder="max.mustermann@domain.com"
               />
@@ -42,12 +60,19 @@ const Form = () => {
             <div className="w-full">
               <label>How can we help you?</label>
               <textarea
+                name="textarea"
+                {...register("textarea", { required: true })}
                 placeholder="How can we help you?"
                 className="border rounded-lg p-5 font-festivo text-white bg-black w-full h-[300px] "
               ></textarea>
             </div>
             <div className="flex justify-center items-start">
-              <input type="checkbox" className="mt-1.5 " />
+              <input
+                type="checkbox"
+                name="check"
+                className="mt-1.5 "
+                {...register("check", { required: true })}
+              />
               <p className="text-white pl-2">
                 I agree to the transfer and storage of my personal data for the
                 purpose of handling e-mail traffic. I have taken note of the
@@ -56,6 +81,12 @@ const Form = () => {
               </p>
             </div>
           </div>
+          <button
+            type="submit"
+            className="bg-[#0c2b20] rounded-3xl mt-10 py-4 px-14 text-[#a6a6a6]"
+          >
+            Submit
+          </button>
         </form>
       </div>
       <div className=" ">
